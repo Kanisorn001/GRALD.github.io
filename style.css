@@ -260,3 +260,23 @@ a{ color:inherit; text-decoration:none; }
     min-width: 220px;
   }
 }
+
+.avatar{
+  width: 96px;
+  height: 96px;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+  margin: 10px auto 12px; /* กลางการ์ด และเว้นระยะบน-ล่าง */
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+}
+.grid4{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 คอลัมน์ = 4 กล่องเป็น 2x2 */
+  gap: 16px;
+}
+
+@media (max-width: 900px){
+  .grid4{ grid-template-columns: 1fr; } /* จอเล็กเรียงลง */
+}
