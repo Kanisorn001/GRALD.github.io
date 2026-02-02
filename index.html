@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NCDs Listener — Social Listening Web Application</title>
-  <meta name="description" content="Open-source social listening tool to collect, analyze, summarize, and visualize NCD-related discussions from social media." />
+
+  <title>Real-time Daily Gold Price Prediction Web Application</title>
+  <meta name="description" content="เว็บแอปพลิเคชันทำนายราคาทองคำรายวันแบบเรียลไทม์ โดยใช้ข้อมูลย้อนหลัง ~10 ปีจาก Yahoo Finance และ FRED เปรียบเทียบหลายโมเดล พร้อมอธิบายด้วย SHAP และแสดงผลผ่าน FastAPI + React (Deploy บน Render)" />
 
   <!-- Open Graph (optional) -->
-  <meta property="og:title" content="GRALD" />
-  <meta property="og:description" content="Social Listening Web Application for NCDs Patients" />
+  <meta property="og:title" content="Real-time Daily Gold Price Prediction Web Application" />
+  <meta property="og:description" content="เว็บแอปทำนาย Gold High/Low/Close (t+1) แบบเรียลไทม์ ด้วย ML/DL + Walk-forward + SHAP" />
   <meta property="og:type" content="website" />
 
   <link rel="stylesheet" href="style.css" />
@@ -20,13 +21,13 @@
     <div class="container topbar-inner">
       <a class="brand" href="#top" aria-label="Go to top">
         <span class="brand-dot"></span>
-        <span>NCDs Listener</span>
+        <span>Gold Forecast Web App</span>
       </a>
 
       <nav class="nav">
         <a href="#developers">Developers</a>
         <a href="#content">Main Content</a>
-        <a href="#abstract">Abstract</a>
+        <a href="#summary">Project Summary</a>
         <a href="#workflow">Workflow</a>
         <a href="#system-design">Systems Design</a>
       </nav>
@@ -39,30 +40,43 @@
   <main id="top" class="hero">
     <div class="container hero-grid">
       <div>
-        <p class="badge">Capstone / Research Project</p>
+        <p class="badge">SC 664 774 • โครงงานทางสารสนเทศสถิติและวิทยาการข้อมูล 1 • ปีการศึกษา 2568</p>
 
         <h1 class="title">
-          NCDs Listener: Social Listening Web Application for Non-Communicable Disease (NCDs) Patients
+          เว็บแอปพลิเคชันทำนายราคาทองคำรายวันแบบเรียลไทม์
         </h1>
 
         <p class="subtitle">
-          เว็บแอปพลิเคชันการฟังเสียงบนสื่อสังคมออนไลน์สําหรับผู้ป่วยกลุ่มโรคไม่ติดต่อเรื้อรัง
+          Real-time daily gold price prediction web application (Forecast: Gold High / Low / Close, t+1)
         </p>
 
         <div class="cta-row">
-          <!-- แก้ลิงก์ตามของจริง -->
           <a class="btn primary" href="#content">Explore Project</a>
-          <a class="btn ghost" href="https://github.com/USERNAME/REPO" target="_blank" rel="noreferrer">GitHub Repository</a>
+
+          <!-- แก้ลิงก์ repo ของโปรเจกต์จริง (ถ้ามี) -->
+          <a class="btn ghost"
+             href="https://github.com/Kanisorn001/GRALD.github.io"
+             target="_blank" rel="noreferrer">
+            GitHub Repository
+          </a>
         </div>
 
         <div class="meta">
           <div class="meta-item">
-            <span class="meta-k">Tech</span>
-            <span class="meta-v">Python, Selenium, BeautifulSoup, NLP, BERT, GenAI, Dashboard</span>
+            <span class="meta-k">Data</span>
+            <span class="meta-v">Yahoo Finance (daily) + FRED (macro; monthly → daily via ffill), ~10 years</span>
           </div>
           <div class="meta-item">
-            <span class="meta-k">Focus</span>
-            <span class="meta-v">NCD Knowledge Extraction • Summarization • Visualization</span>
+            <span class="meta-k">Models</span>
+            <span class="meta-v">Linear Regression • CatBoost • XGBoost • LightGBM • LSTM</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-k">Eval</span>
+            <span class="meta-v">Walk-forward + TimeSeriesSplit + Grid Search, RMSE/MAE/MAPE/R²</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-k">Stack</span>
+            <span class="meta-v">Python (yfinance, fredapi, pandas) • SHAP • FastAPI (Backend) • React + Chart.js (Frontend) • Render (Deploy)</span>
           </div>
         </div>
       </div>
@@ -71,13 +85,14 @@
         <h2 class="h2">Quick Links</h2>
         <ul class="quicklinks">
           <li><a href="#developers">👥 Developers</a></li>
-          <li><a href="#abstract">🧾 Abstract</a></li>
+          <li><a href="#content">🧩 Main Content</a></li>
+          <li><a href="#summary">🧾 Project Summary</a></li>
           <li><a href="#workflow">🔁 Workflow</a></li>
           <li><a href="#system-design">🧱 Systems Design</a></li>
         </ul>
         <div class="divider"></div>
         <p class="small">
-          Tip: เปลี่ยนชื่อ/ลิงก์/รูปในไฟล์นี้ได้ตรง ๆ แล้ว push ขึ้น GitHub Pages
+          Tip: แก้ลิงก์ “Live Web App / API / Report” ให้เป็นของจริง แล้ว push ขึ้น GitHub Pages
         </p>
       </aside>
     </div>
@@ -88,37 +103,34 @@
     <div class="container">
       <div class="section-head">
         <h2 class="h2">Developers</h2>
-        <p class="lead">ทีมผู้พัฒนา และอาจารย์ที่ปรึกษา</p>
+        <p class="lead">รายชื่อผู้จัดทำ และอาจารย์ที่ปรึกษา (อ้างอิงจากรายงาน)</p>
       </div>
 
       <div class="grid3">
         <article class="card">
           <p class="pill">Student</p>
-          <h3 class="h3">Ratchanont Thippimanporn</h3>
-          <p class="muted">Data Scraping • Preprocessing • Dashboard</p>
+          <h3 class="h3">นายคณิศร กุดกลาง</h3>
+          <p class="muted">Student ID: 653020202-7</p>
           <div class="card-actions">
-            <a class="link" href="mailto:student1@example.com">Email</a>
-            <a class="link" href="https://github.com/USERNAME1" target="_blank" rel="noreferrer">GitHub</a>
+            <!-- ใส่ของจริงได้ -->
+            <a class="link" href="https://github.com/Kanisorn001" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </article>
 
         <article class="card">
           <p class="pill">Student</p>
-          <h3 class="h3">Wuttichai Khamna</h3>
-          <p class="muted">NLP • BERT • Knowledge Extraction</p>
+          <h3 class="h3">นายปาณัสย์ โรจน์พัฒนเดชา</h3>
+          <p class="muted">Student ID: 653020210-8</p>
           <div class="card-actions">
-            <a class="link" href="mailto:student2@example.com">Email</a>
-            <a class="link" href="https://github.com/USERNAME2" target="_blank" rel="noreferrer">GitHub</a>
+            <!-- ใส่ของจริงได้ -->
+            <a class="link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </article>
 
         <article class="card">
-          <p class="pill">Project Advisor</p>
-          <h3 class="h3">Thanapong Intharah</h3>
-          <p class="muted">Research Supervision • Methodology • Evaluation</p>
-          <div class="card-actions">
-            <a class="link" href="mailto:advisor@example.com">Email</a>
-          </div>
+          <p class="pill">Project Advisors</p>
+          <h3 class="h3">ผู้ช่วยศาสตราจารย์ ดร.พลากร สีน้อย (ที่ปรึกษาหลัก)</h3>
+          <p class="muted">อาจารย์ ดร.ธนวรรณ ประฮาดไชย (ที่ปรึกษาร่วม)</p>
         </article>
       </div>
     </div>
@@ -129,62 +141,77 @@
     <div class="container">
       <div class="section-head">
         <h2 class="h2">Main Content</h2>
-        <p class="lead">รายงาน โปรเจกต์ และเว็บแอปพลิเคชัน</p>
+        <p class="lead">รายงาน / เว็บแอป / API (แก้ลิงก์ให้ตรงของจริง)</p>
       </div>
 
       <div class="grid3">
         <article class="card">
-          <h3 class="h3">Report</h3>
-          <p class="muted">You can visit my report</p>
-          <!-- ถ้ามี report.pdf ใน assets ให้ใช้แบบนี้ -->
-          <a class="btn primary block" href="assets/report.pdf" target="_blank" rel="noreferrer">Open Report (PDF)</a>
-          <!-- หรือเปลี่ยนเป็นลิงก์ออนไลน์ -->
+          <h3 class="h3">Project Report</h3>
+          <p class="muted">รายงานโครงงาน (แนะนำแปลงเป็น PDF แล้ววางใน assets/)</p>
+
+          <!-- ตัวเลือก 1: ไฟล์ใน repo -->
+          <a class="btn primary block" href="assets/report.pdf" target="_blank" rel="noreferrer">
+            Open Report (PDF)
+          </a>
+
+          <!-- ตัวเลือก 2: ลิงก์ออนไลน์ -->
           <!-- <a class="btn primary block" href="https://..." target="_blank" rel="noreferrer">Open Report</a> -->
         </article>
 
         <article class="card">
-          <h3 class="h3">NCDs Listener</h3>
-          <p class="muted">Click me to go to scrape data from social media!</p>
-          <a class="btn primary block" href="https://YOUR-APP-LINK" target="_blank" rel="noreferrer">Open Scraper Tool</a>
+          <h3 class="h3">Live Web Application</h3>
+          <p class="muted">Frontend (React) แสดงผลการพยากรณ์ + กราฟแนวโน้ม</p>
+
+          <!-- แก้เป็นลิงก์ Render/โดเมนจริง -->
+          <a class="btn primary block" href="https://YOUR-FRONTEND-URL" target="_blank" rel="noreferrer">
+            Open Web App
+          </a>
         </article>
 
         <article class="card">
-          <h3 class="h3">Web Application</h3>
-          <p class="muted">Introduce my all of models</p>
-          <a class="btn primary block" href="https://YOUR-DASHBOARD-LINK" target="_blank" rel="noreferrer">Open Dashboard</a>
+          <h3 class="h3">Prediction API (FastAPI)</h3>
+          <p class="muted">Backend ให้บริการผลพยากรณ์ + (ถ้ามี) endpoint สำหรับ SHAP</p>
+
+          <!-- แก้เป็นลิงก์ API จริง -->
+          <a class="btn primary block" href="https://YOUR-BACKEND-API-URL/docs" target="_blank" rel="noreferrer">
+            Open API Docs
+          </a>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Abstract -->
-  <section id="abstract" class="section">
+  <!-- Project Summary -->
+  <section id="summary" class="section">
     <div class="container narrow">
       <div class="section-head">
-        <h2 class="h2">Abstract</h2>
-        <p class="lead">บทคัดย่อ (สามารถแก้ไข/ย่อ/แยกย่อหน้าได้)</p>
+        <h2 class="h2">Project Summary</h2>
+        <p class="lead">สรุปแนวคิดและขอบเขตโครงการ (สรุปตามรายงานบทที่ 1 และบทที่ 3)</p>
       </div>
 
       <article class="prose">
         <p>
-          Over 41 million people worldwide die from NCDs (non-communicable diseases) annually, the majority of which occur in low- and middle-income countries.
-          Social media has become a critical platform for individuals to share experiences and access information about NCDs.
-          Social (media) listening offers valuable insights by analyzing user discussions, but existing tools are closed-source and commercial.
+          โครงการนี้มุ่งพัฒนา “เว็บแอปพลิเคชันทำนายราคาทองคำรายวันแบบเรียลไทม์” เพื่อช่วยให้ผู้ใช้งานเข้าถึงผลการพยากรณ์ที่อัปเดตต่อเนื่อง
+          โดยกำหนดเป้าหมายการพยากรณ์เป็นราคาทองคำของ “วันถัดไป (t+1)” ครอบคลุม Gold High, Gold Low และ Gold Close (USD/oz)
+          ภายใต้แนวคิดการนำข้อมูลการเงินรายวันและปัจจัยมหภาคมารวมกันเพื่อเพิ่มความแม่นยำในการทำนาย
         </p>
 
         <p>
-          This study seeks to simplify the extraction of NCD-related knowledge from social media, making it easier for the public to understand and access information.
-          We proposed an open-source social (media) listening tool called NCDs Listener to collect, analyze, summarize, and visualize data.
+          ข้อมูลที่ใช้ประกอบด้วยข้อมูลรายวันจาก Yahoo Finance (เช่น ราคาทองคำ, ปริมาณการซื้อขาย, สินทรัพย์/ดัชนีที่เกี่ยวข้อง)
+          และข้อมูลเศรษฐกิจมหภาคจาก FRED (เช่น CPI) ซึ่งมีความถี่รายเดือนจะถูกปรับให้อยู่ในกรอบรายวันด้วยวิธี forward fill (ffill)
+          จากนั้นทำการรวมข้อมูลตามแกนเวลา ทำความสะอาดข้อมูล และสร้างคุณลักษณะแบบ lag เพื่อทำนายแบบ one-step-ahead
         </p>
 
         <p>
-          Use keyword matching and the BERT Model to extract knowledge from comments. The preliminary data was analyzed using descriptive statistics.
-          Additionally, a Generative AI model summarizes the extracted knowledge in human-readable sentences.
+          ในด้านตัวแบบ โครงการเปรียบเทียบหลายแนวทาง ได้แก่ Linear Regression, CatBoost, XGBoost, LightGBM และ LSTM
+          ภายใต้กรอบประเมินแบบอนุกรมเวลา (walk-forward) ร่วมกับการปรับแต่งไฮเปอร์พารามิเตอร์ด้วย TimeSeriesSplit และ Grid Search
+          โดยใช้เมตริกมาตรฐาน เช่น RMSE, MAE, MAPE และ R² เพื่อคัดเลือกโมเดลที่เหมาะสมที่สุดสำหรับนำไปใช้งานจริง
         </p>
 
         <p>
-          Our NCDs Listener tool is open-source and can extract knowledge related to NCDs. This knowledge can be used as a guideline for treatment or the development
-          of effective care to meet patients’ needs.
+          เพื่อให้ผลการพยากรณ์โปร่งใสและตีความได้ โครงการประยุกต์ใช้ SHAP เพื่ออธิบายความสำคัญของตัวแปรทั้งระดับภาพรวม (global)
+          และระดับรายกรณี (local) และนำผลลัพธ์ทั้งหมดไปแสดงบนเว็บแอปแบบ Client–Server โดยใช้ FastAPI เป็น backend และ React + Chart.js เป็น frontend
+          พร้อมตั้งค่าให้อัปเดตข้อมูลอัตโนมัติผ่าน GitHub Actions และ deploy ระบบบน Render
         </p>
       </article>
     </div>
@@ -195,19 +222,19 @@
     <div class="container">
       <div class="section-head">
         <h2 class="h2">Workflow</h2>
-        <p class="lead">5-step pipeline: scraping → preprocessing → extraction → adjustment → visualization</p>
+        <p class="lead">End-to-end pipeline: data → features → models → SHAP → web app (real-time)</p>
       </div>
 
       <!-- ถ้ามีภาพ workflow ให้ใส่ -->
-      <!-- <img class="figure" src="assets/workflow.png" alt="Systems Design of NCDs Listener" /> -->
+      <!-- <img class="figure" src="assets/workflow.png" alt="System workflow" /> -->
 
       <div class="timeline">
         <div class="step">
           <div class="step-no">1</div>
           <div class="step-body">
-            <h3 class="h3">Data Scraping</h3>
+            <h3 class="h3">Automated Data Ingestion</h3>
             <p class="muted">
-              User enters a post URL → Selenium + BeautifulSoup extract comments and metadata from public posts.
+              ดึงข้อมูลจาก Yahoo Finance (ผ่าน yfinance) และ FRED (ผ่าน fredapi) และตั้ง schedule ให้อัปเดตอัตโนมัติ (เช่น รายวัน) ด้วย GitHub Actions
             </p>
           </div>
         </div>
@@ -215,9 +242,9 @@
         <div class="step">
           <div class="step-no">2</div>
           <div class="step-body">
-            <h3 class="h3">Data Preprocessing</h3>
+            <h3 class="h3">Data Merging & Cleaning</h3>
             <p class="muted">
-              Remove duplicates, filter extremely short text, normalize formatting, export CSV for downstream analysis.
+              รวมข้อมูลหลายแหล่งตาม Date, เติมค่าข้อมูลต่างความถี่ด้วย ffill, จัดรูปแบบวันที่, จัดการ missing และ export เป็น CSV สำหรับฝึก/ใช้งานระบบ
             </p>
           </div>
         </div>
@@ -225,9 +252,9 @@
         <div class="step">
           <div class="step-no">3</div>
           <div class="step-body">
-            <h3 class="h3">Knowledge Extraction</h3>
+            <h3 class="h3">Feature Engineering (Lag / Scaling)</h3>
             <p class="muted">
-              Tokenization, stopwords, lemmatization + keyword matching + BERT classification to identify comment types.
+              สร้างคุณลักษณะ lag (เช่น lag 1), คัดเลือกตัวแปรตามเกณฑ์ (เช่น correlation/VIF/RFE สำหรับเชิงเส้น), เตรียมรูปแบบข้อมูลสำหรับ LSTM (windowing)
             </p>
           </div>
         </div>
@@ -235,9 +262,10 @@
         <div class="step">
           <div class="step-no">4</div>
           <div class="step-body">
-            <h3 class="h3">Data Adjustment</h3>
+            <h3 class="h3">Model Training & Walk-forward Evaluation</h3>
             <p class="muted">
-              Users include/exclude diseases and symptoms → system filters the extracted knowledge accordingly.
+              แบ่ง Train/Val/Test ตามลำดับเวลา, จูนพารามิเตอร์ด้วย TimeSeriesSplit + Grid Search และประเมินแบบ walk-forward (one-step-ahead)
+              ด้วย RMSE/MAE/MAPE/R²
             </p>
           </div>
         </div>
@@ -245,9 +273,20 @@
         <div class="step">
           <div class="step-no">5</div>
           <div class="step-body">
-            <h3 class="h3">Data Visualization</h3>
+            <h3 class="h3">Explainability with SHAP</h3>
             <p class="muted">
-              Interactive dashboard + GenAI summarization; summary stats table; export results as PDF.
+              สร้างคำอธิบายตัวแบบทั้ง global (feature importance) และ local (อธิบายแต่ละวัน/แต่ละครั้งที่ทำนาย) เพื่อเพิ่มความโปร่งใสในการใช้งานจริง
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-no">6</div>
+          <div class="step-body">
+            <h3 class="h3">Real-time Serving & Dashboard</h3>
+            <p class="muted">
+              Backend ด้วย FastAPI โหลดโมเดลและให้บริการ REST API; Frontend ด้วย React + Chart.js เรียกผลทำนายและแสดงกราฟ/ตาราง รวมถึงส่วน SHAP dashboard
+              และ deploy บน Render
             </p>
           </div>
         </div>
@@ -260,33 +299,41 @@
     <div class="container">
       <div class="section-head">
         <h2 class="h2">Systems Design</h2>
-        <p class="lead">Implementation overview (Python 3.11.9 + NLP + dashboard)</p>
+        <p class="lead">Client–Server architecture + automation (data update) + model transparency (SHAP)</p>
       </div>
 
       <div class="grid2">
         <article class="card">
           <h3 class="h3">Architecture</h3>
           <ul class="bullets">
-            <li><b>Input:</b> Social post URL + include/exclude rules</li>
-            <li><b>Scraping:</b> Selenium/BS4 (public content)</li>
-            <li><b>NLP:</b> Keyword matching + BERT classification</li>
-            <li><b>Summarization:</b> Generative AI produces human-readable insights</li>
-            <li><b>Output:</b> Dashboard + CSV/PDF exports</li>
+            <li><b>Targets:</b> Gold High / Gold Low / Gold Close (t+1)</li>
+            <li><b>Data Sources:</b> Yahoo Finance (daily) + FRED (macro; monthly → daily via ffill)</li>
+            <li><b>Preprocessing:</b> merge by Date, handle missing, standardize/scale (as needed)</li>
+            <li><b>Models:</b> Linear Regression, CatBoost, XGBoost, LightGBM, LSTM</li>
+            <li><b>Evaluation:</b> Time-based split + walk-forward, metrics: RMSE/MAE/MAPE/R²</li>
+            <li><b>XAI:</b> SHAP global + local explanations</li>
+            <li><b>Backend:</b> FastAPI (predict endpoints, optional /docs)</li>
+            <li><b>Frontend:</b> React (SPA) + Chart.js for visualization</li>
+            <li><b>Automation:</b> GitHub Actions schedule for daily data update</li>
+            <li><b>Deploy:</b> Render (Backend service + Frontend static site)</li>
           </ul>
         </article>
 
         <article class="card">
           <h3 class="h3">Deliverables</h3>
           <div class="tags">
-            <span class="tag">Dataset (CSV)</span>
-            <span class="tag">Dashboard</span>
-            <span class="tag">PDF Report Export</span>
-            <span class="tag">Open-source Repo</span>
+            <span class="tag">Daily Forecast (t+1)</span>
+            <span class="tag">Walk-forward Evaluation</span>
+            <span class="tag">SHAP Dashboard</span>
+            <span class="tag">FastAPI REST API</span>
+            <span class="tag">React + Chart.js UI</span>
+            <span class="tag">GitHub Actions ETL</span>
+            <span class="tag">Render Deployment</span>
           </div>
 
           <div class="divider"></div>
           <p class="muted">
-            เพิ่มภาพระบบ (diagram) ได้โดยใส่ไฟล์ใน <code>assets/</code> แล้วแทรก <code>&lt;img&gt;</code> ในหน้านี้
+            ถ้ามีภาพสถาปัตยกรรม/แผนภาพ workflow ให้ใส่ใน <code>assets/</code> แล้วแทรกเป็น <code>&lt;img&gt;</code> ในส่วน Workflow หรือ Systems Design
           </p>
         </article>
       </div>
@@ -296,7 +343,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-inner">
-      <p class="small">© <span id="year"></span> NCDs Listener • Built on GitHub Pages</p>
+      <p class="small">© <span id="year"></span> Real-time Daily Gold Price Prediction Web Application • Built on GitHub Pages</p>
       <a class="small" href="#top">Back to top ↑</a>
     </div>
   </footer>
@@ -304,4 +351,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
