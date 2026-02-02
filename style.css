@@ -342,5 +342,62 @@ a{ color:inherit; text-decoration:none; }
   .profiles{ grid-template-columns: 1fr; }
 }
 
+/* Center the Developers heading */
+#developers .section-head{
+  text-align: center;
+}
+
+#developers .section-head .h2{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Main Content - force layout */
+.icon-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  align-items: start;
+  justify-items: center; /* ให้ทุกชิ้นอยู่กลางคอลัมน์ */
+  margin-top: 26px;
+}
+
+.icon-card{
+  display: block;        /* สำคัญ: ทำให้ลิงก์เป็น block เต็มๆ */
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 6px;
+}
+
+.icon-img{
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 14px;
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .icon-grid{ grid-template-columns: 1fr; gap: 22px; }
+}
+
+/* Make background uniform across the whole page */
+body{
+  background: #0b1220; /* หรือสีที่คุณใช้เป็นหลัก */
+}
+
+.section,
+.section.alt,
+.hero{
+  background: transparent !important;  /* ไม่ให้แต่ละ section ทาสีทับ */
+}
+
+.section::before,
+.section::after,
+.hero::before,
+.hero::after{
+  content: none !important;            /* ถ้ามี overlay/gradient ซ้อน */
+}
 
 
