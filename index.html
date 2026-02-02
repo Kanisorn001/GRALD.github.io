@@ -130,19 +130,35 @@
 
 
   <!-- Project Summary -->
-  <section id="summary" class="section">
-    <div class="container narrow">
-      <div class="section-head">
-        <h2 class="h2">Abstract</h2>
-      </div>
-
-      <article class="prose">
-        <p>
-          <p>Gold is widely regarded as a safe-haven asset, and accurate short-term forecasting can support trading and risk-management decisions. This study develops and evaluates one-step-ahead (t+1) forecasting models for daily gold prices, focusing on Gold_High, Gold_Low, and Gold_Close. The dataset combines daily market variables collected from Yahoo Finance (gold OHLC, gold volume, silver price, crude oil price, S&P 500 index, U.S. 10-year Treasury yield, and the U.S. Dollar Index) with macroeconomic indicators from Federal Reserve Bank of St. Louis via FRED (e.g., CPI). Macroeconomic series with lower frequency are aligned to the daily timeline using forward-fill to ensure consistent temporal indexing. A unified time-series evaluation protocol is applied to prevent data leakage: hyperparameters are tuned using time-series cross-validation on the initial training segment, the best configuration is refit on the combined train–validation set, and final performance is assessed using one-step-ahead walk-forward testing. Models compared include ARIMA, linear regression, XGBoost, LightGBM, and LSTM. ARIMA parameters are selected via grid search, yielding ARIMA(0,1,1) as the best specification across targets, while XGBoost is optimized with Optuna and early stopping with alternative lag settings. Performance is measured using RMSE, MAE, MAPE, and R². Experimental results indicate that linear regression achieves the lowest test-set RMSE across all three targets (Gold_High: 27.09, Gold_Low: 30.65, Gold_Close: 39.01 USD/oz), with ARIMA remaining competitive for Gold_Close (RMSE 38.69). The best-performing model is intended for deployment in a web application to deliver accessible next-day gold price forecasts for end users.
-        </p>
-      </article>
+<section id="summary" class="section">
+  <div class="container narrow">
+    <div class="section-head">
+      <h2 class="h2">Abstract</h2>
     </div>
-  </section>
+
+    <article class="prose abstract-body">
+      <p>
+        Gold is widely regarded as a safe-haven asset, and accurate short-term forecasting can support trading and risk-management decisions.
+        This study develops and evaluates one-step-ahead (t+1) forecasting models for daily gold prices, focusing on Gold_High, Gold_Low, and Gold_Close.
+        The dataset combines daily market variables collected from Yahoo Finance (gold OHLC, gold volume, silver price, crude oil price, S&amp;P 500 index,
+        U.S. 10-year Treasury yield, and the U.S. Dollar Index) with macroeconomic indicators from Federal Reserve Bank of St. Louis via FRED (e.g., CPI).
+        Macroeconomic series with lower frequency are aligned to the daily timeline using forward-fill to ensure consistent temporal indexing.
+        A unified time-series evaluation protocol is applied to prevent data leakage: hyperparameters are tuned using time-series cross-validation on the initial training segment,
+        the best configuration is refit on the combined train–validation set, and final performance is assessed using one-step-ahead walk-forward testing.
+      </p>
+
+      <p>
+        Models compared include ARIMA, linear regression, XGBoost, LightGBM, and LSTM.
+        ARIMA parameters are selected via grid search, yielding ARIMA(0,1,1) as the best specification across targets, while XGBoost is optimized with Optuna and early stopping with alternative lag settings.
+        Performance is measured using RMSE, MAE, MAPE, and R².
+        Experimental results indicate that linear regression achieves the lowest test-set RMSE across all three targets (Gold_High: 27.09, Gold_Low: 30.65, Gold_Close: 39.01 USD/oz),
+        with ARIMA remaining competitive for Gold_Close (RMSE 38.69).
+        The best-performing model is intended for deployment in a web application to deliver accessible next-day gold price forecasts for end users.
+      </p>
+    </article>
+  </div>
+</section>
+
 
   <!-- Workflow -->
   <section id="workflow" class="section alt">

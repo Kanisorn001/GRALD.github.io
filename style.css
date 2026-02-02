@@ -401,3 +401,25 @@ body{
 }
 
 
+.abstract-section{
+  padding: 40px 0;              /* กันชิดขอบบน-ล่าง */
+}
+
+.abstract-title{
+  text-align: center;
+  margin: 0 0 22px 0;
+}
+
+.abstract-body{
+  width: min(1100px, 92vw);     /* ✅ ทำให้ไม่เต็มจอ */
+  margin: 0 auto;               /* ✅ จัดกึ่งกลาง */
+}
+
+.abstract-body p{
+  margin: 0 0 18px 0;           /* ✅ เว้นระหว่างย่อหน้า */
+  text-align: justify;          /* ✅ ชิดซ้าย-ขวา */
+  text-justify: inter-word;
+  text-indent: 2em;             /* ✅ ย่อบรรทัดแรก */
+  line-height: 1.8;             /* ✅ อ่านง่าย */
+  hyphens: auto;                /* (ช่วยให้ justify สวยขึ้น บางเบราว์เซอร์) */
+}
