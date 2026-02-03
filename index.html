@@ -41,7 +41,7 @@
     <div class="container hero-grid">
       <div>
         <h1 class="title">
-          Real-time daily gold price prediction web application
+          Real-time daily <span class="gold">gold</span> price prediction web application
         </h1>
 
         <p class="subtitle">
@@ -169,73 +169,9 @@
       </div>
 
       <!-- ถ้ามีภาพ workflow ให้ใส่ -->
-      <!-- <img class="figure" src="assets/workflow.png" alt="System workflow" /> -->
+      <img class="figure" src="assets/workflow.png" alt="System workflow" />
 
-      <div class="timeline">
-        <div class="step">
-          <div class="step-no">1</div>
-          <div class="step-body">
-            <h3 class="h3">Automated Data Ingestion</h3>
-            <p class="muted">
-              ดึงข้อมูลจาก Yahoo Finance (ผ่าน yfinance) และ FRED (ผ่าน fredapi) และตั้ง schedule ให้อัปเดตอัตโนมัติ (เช่น รายวัน) ด้วย GitHub Actions
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-no">2</div>
-          <div class="step-body">
-            <h3 class="h3">Data Merging & Cleaning</h3>
-            <p class="muted">
-              รวมข้อมูลหลายแหล่งตาม Date, เติมค่าข้อมูลต่างความถี่ด้วย ffill, จัดรูปแบบวันที่, จัดการ missing และ export เป็น CSV สำหรับฝึก/ใช้งานระบบ
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-no">3</div>
-          <div class="step-body">
-            <h3 class="h3">Feature Engineering (Lag / Scaling)</h3>
-            <p class="muted">
-              สร้างคุณลักษณะ lag (เช่น lag 1), คัดเลือกตัวแปรตามเกณฑ์ (เช่น correlation/VIF/RFE สำหรับเชิงเส้น), เตรียมรูปแบบข้อมูลสำหรับ LSTM (windowing)
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-no">4</div>
-          <div class="step-body">
-            <h3 class="h3">Model Training & Walk-forward Evaluation</h3>
-            <p class="muted">
-              แบ่ง Train/Val/Test ตามลำดับเวลา, จูนพารามิเตอร์ด้วย TimeSeriesSplit + Grid Search และประเมินแบบ walk-forward (one-step-ahead)
-              ด้วย RMSE/MAE/MAPE/R²
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-no">5</div>
-          <div class="step-body">
-            <h3 class="h3">Explainability with SHAP</h3>
-            <p class="muted">
-              สร้างคำอธิบายตัวแบบทั้ง global (feature importance) และ local (อธิบายแต่ละวัน/แต่ละครั้งที่ทำนาย) เพื่อเพิ่มความโปร่งใสในการใช้งานจริง
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-no">6</div>
-          <div class="step-body">
-            <h3 class="h3">Real-time Serving & Dashboard</h3>
-            <p class="muted">
-              Backend ด้วย FastAPI โหลดโมเดลและให้บริการ REST API; Frontend ด้วย React + Chart.js เรียกผลทำนายและแสดงกราฟ/ตาราง รวมถึงส่วน SHAP dashboard
-              และ deploy บน Render
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+     
 
   <!-- Systems Design -->
   <section id="system-design" class="section">

@@ -1,116 +1,199 @@
+/* =========================
+   Navy-Gold (White) Theme
+   ========================= */
 :root{
-  --bg:#0b0f17;
-  --panel:#111827;
-  --panel2:#0f172a;
-  --text:#e5e7eb;
-  --muted:#9ca3af;
-  --line:#243244;
-  --accent:#7c3aed;
-  --accent2:#22c55e;
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --navy:#0b1a33;
+  --navy2:#0f2447;
+  --gold:#c8a64b;
+
+  --bg:#ffffff;
+  --panel:#ffffff;
+  --panel2:#f6f8fc;
+
+  --text: var(--navy);
+  --muted:#52627a;
+  --line:#e3e8f0;
+
+  --accent: var(--gold);
+  --accent2: var(--navy);
+
+  --shadow: 0 10px 30px rgba(11,26,51,.12);
   --radius: 18px;
 }
 
 *{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
+
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", sans-serif;
-  background: radial-gradient(1200px 600px at 20% 0%, rgba(124,58,237,.25), transparent 60%),
-              radial-gradient(900px 500px at 80% 10%, rgba(34,197,94,.18), transparent 60%),
-              var(--bg);
   color:var(--text);
+  background:
+    radial-gradient(900px 520px at 20% 0%, rgba(200,166,75,.18), transparent 55%),
+    radial-gradient(900px 520px at 80% 0%, rgba(11,26,51,.10), transparent 60%),
+    var(--bg);
 }
 
 a{ color:inherit; text-decoration:none; }
+
 .container{ width:min(1120px, 92vw); margin-inline:auto; }
 .narrow{ width:min(860px, 92vw); margin-inline:auto; }
 
+.small{ font-size:12px; color:var(--muted); }
+.muted{ margin:0; color:var(--muted); }
+
+.divider{
+  height:1px;
+  background: var(--line);
+  margin:14px 0;
+}
+
+/* =========================
+   Topbar
+   ========================= */
 .topbar{
   position:sticky; top:0; z-index:20;
   backdrop-filter: blur(10px);
-  background: rgba(11,15,23,.65);
-  border-bottom:1px solid rgba(36,50,68,.6);
+  background: rgba(255,255,255,.72);
+  border-bottom:1px solid var(--line);
 }
+
 .topbar-inner{
   display:flex; align-items:center; justify-content:space-between;
   padding:12px 0;
 }
+
 .brand{
   display:flex; align-items:center; gap:10px;
-  font-weight:700; letter-spacing:.2px;
+  font-weight:800; letter-spacing:.2px;
+  color: var(--navy);
 }
+
 .brand-dot{
   width:12px; height:12px; border-radius:999px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow: 0 0 0 4px rgba(124,58,237,.15);
+  background: linear-gradient(135deg, var(--gold), var(--navy));
+  box-shadow: 0 0 0 4px rgba(200,166,75,.18);
 }
+
 .nav{ display:flex; gap:16px; }
 .nav a{
   font-size:14px; color:var(--muted);
   padding:8px 10px; border-radius:999px;
 }
-.nav a:hover{ background: rgba(255,255,255,.06); color:var(--text); }
+.nav a:hover{ background: rgba(11,26,51,.06); color:var(--navy); }
 
 .nav-toggle{
   display:none;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.05);
-  color:var(--text);
+  border:1px solid rgba(11,26,51,.18);
+  background: rgba(255,255,255,.6);
+  color:var(--navy);
   border-radius:12px;
   padding:8px 10px;
 }
 
-.hero{ padding:64px 0 36px; }
+/* =========================
+   Hero
+   ========================= */
+.hero{
+  padding:64px 0 36px;
+  text-align:center;
+}
+
 .hero-grid{
   display:grid;
   grid-template-columns: 1.6fr .9fr;
   gap:22px;
   align-items:start;
+  justify-items:center;
 }
 
 .badge{
   display:inline-block;
   padding:6px 10px;
-  border:1px solid rgba(255,255,255,.16);
-  background: rgba(255,255,255,.04);
+  border:1px solid rgba(11,26,51,.16);
+  background: rgba(11,26,51,.03);
   border-radius:999px;
   color:var(--muted);
   font-size:12px;
   margin:0 0 14px;
 }
-.title{ font-size: clamp(28px, 3.3vw, 42px); line-height:1.12; margin:0 0 10px; }
-.subtitle{ font-size:16px; color:var(--muted); margin:0 0 18px; max-width: 60ch; }
 
-.cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin: 16px 0 18px; }
+.title{
+  font-size: clamp(28px, 3.3vw, 42px);
+  line-height:1.12;
+  margin:0 0 10px;
+  color: var(--navy);
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+.subtitle{
+  font-size:16px;
+  color:var(--muted);
+  margin:0 auto 18px;
+  max-width: 70ch;
+  position: relative;
+  padding-bottom: 22px;    /* ระยะเส้นใต้หัวข้อ */
+}
+
+/* ✅ เส้นใต้หัวข้อ hero (อยู่ใต้ subtitle) */
+.subtitle::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:0;
+  width:min(1120px, 92vw);
+  height:1px;
+  background: var(--line);
+}
+
+/* ✅ ทำคำว่า gold เป็นสีทอง */
+.gold{
+  color: var(--gold);
+}
+
+.cta-row{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin: 16px 0 18px;
+}
 
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
   gap:8px;
   padding:10px 14px;
   border-radius: 14px;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.04);
-  color:var(--text);
-  font-weight:600;
-  box-shadow: none;
+  border:1px solid rgba(11,26,51,.18);
+  background: rgba(255,255,255,.65);
+  color:var(--navy);
+  font-weight:700;
   transition: transform .12s ease, background .12s ease;
 }
-.btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+.btn:hover{ transform: translateY(-1px); background: rgba(11,26,51,.06); }
+
 .btn.primary{
-  border-color: rgba(124,58,237,.55);
-  background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,197,94,.55));
+  border-color: rgba(200,166,75,.75);
+  background: linear-gradient(135deg, rgba(200,166,75,.95), rgba(200,166,75,.65));
+  color: var(--navy);
 }
+
 .btn.ghost{
-  border-color: rgba(255,255,255,.14);
+  border-color: rgba(11,26,51,.22);
+  background: rgba(255,255,255,.5);
 }
+
 .btn.block{ width:100%; }
 
 .meta{
   display:grid; gap:10px;
-  border-top:1px dashed rgba(36,50,68,.9);
+  border-top:1px dashed rgba(82,98,122,.35);
   padding-top:14px;
+  justify-content:center;
 }
+
 .meta-item{ display:flex; gap:10px; align-items:flex-start; }
 .meta-k{
   width:70px;
@@ -119,34 +202,34 @@ a{ color:inherit; text-decoration:none; }
   text-transform:uppercase;
   letter-spacing:.12em;
 }
-.meta-v{ color:var(--text); font-size:14px; }
+.meta-v{ color:var(--navy); font-size:14px; }
 
 .hero-card{
-  border:1px solid rgba(255,255,255,.12);
-  background: linear-gradient(180deg, rgba(17,24,39,.88), rgba(15,23,42,.78));
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.85);
   border-radius: var(--radius);
   padding:18px;
   box-shadow: var(--shadow);
+  width: 100%;
 }
+
 .quicklinks{ list-style:none; padding:0; margin:12px 0 0; display:grid; gap:10px; }
 .quicklinks a{ color:var(--muted); }
-.quicklinks a:hover{ color:var(--text); }
-.small{ font-size:12px; color:var(--muted); }
+.quicklinks a:hover{ color:var(--navy); }
 
-.divider{
-  height:1px;
-  background: rgba(36,50,68,.9);
-  margin:14px 0;
-}
-
+/* =========================
+   Sections + Headings
+   ========================= */
 .section{ padding:56px 0; }
+
 .section.alt{
-  background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
-  border-top:1px solid rgba(36,50,68,.55);
-  border-bottom:1px solid rgba(36,50,68,.55);
+  background: var(--panel2);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
 }
+
 .section-head{ margin-bottom:18px; }
-.h2{ font-size: 24px; margin:0 0 6px; }
+.h2{ font-size: 26px; margin:0 0 6px; color: var(--navy); font-weight: 900; }
 .lead{ margin:0; color:var(--muted); }
 
 .grid3{
@@ -161,38 +244,65 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .card{
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(17,24,39,.65);
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.85);
   border-radius: var(--radius);
   padding:18px;
   box-shadow: var(--shadow);
 }
-.h3{ margin:0 0 8px; font-size:18px; }
-.muted{ margin:0; color:var(--muted); }
+
+.h3{ margin:0 0 8px; font-size:18px; color: var(--navy); font-weight: 800; }
 
 .pill{
   display:inline-block;
   font-size:12px;
-  color: rgba(255,255,255,.85);
-  border:1px solid rgba(255,255,255,.14);
+  color: var(--navy);
+  border:1px solid rgba(11,26,51,.18);
   padding:4px 10px;
   border-radius:999px;
-  background: rgba(255,255,255,.04);
+  background: rgba(11,26,51,.04);
   margin:0 0 10px;
 }
 
 .card-actions{ display:flex; gap:12px; margin-top:12px; }
-.link{ color: var(--muted); font-weight:600; font-size:14px; }
-.link:hover{ color: var(--text); }
+.link{ color: rgba(11,26,51,.85); font-weight:800; font-size:14px; }
+.link:hover{ color: var(--gold); }
 
+/* =========================
+   Prose / Abstract
+   ========================= */
 .prose p{
-  color: var(--text);
+  color: var(--navy);
   line-height:1.8;
   margin: 0 0 14px;
 }
 .prose p:last-child{ margin-bottom:0; }
 
+.abstract-section{
+  padding: 40px 0;
+}
+.abstract-title{
+  text-align: center;
+  margin: 0 0 22px 0;
+}
+.abstract-body{
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+.abstract-body p{
+  margin: 0 0 18px 0;
+  text-align: justify;
+  text-justify: inter-word;
+  text-indent: 2em;
+  line-height: 1.8;
+  hyphens: auto;
+}
+
+/* =========================
+   Workflow timeline
+   ========================= */
 .timeline{ display:grid; gap:14px; margin-top: 18px; }
+
 .step{
   display:grid;
   grid-template-columns: 46px 1fr;
@@ -200,27 +310,30 @@ a{ color:inherit; text-decoration:none; }
   align-items:start;
   padding:14px;
   border-radius: var(--radius);
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(15,23,42,.55);
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.75);
 }
+
 .step-no{
   width:38px; height:38px;
   border-radius:12px;
   display:grid; place-items:center;
-  font-weight:800;
-  background: rgba(124,58,237,.22);
-  border:1px solid rgba(124,58,237,.35);
+  font-weight:900;
+  background: rgba(200,166,75,.22);
+  border:1px solid rgba(200,166,75,.45);
+  color: var(--navy);
 }
 
 .bullets{ margin:10px 0 0; padding-left:18px; color:var(--muted); }
 .bullets li{ margin:8px 0; }
+
 .tags{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
 .tag{
   font-size:12px;
   padding:6px 10px;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.04);
+  border:1px solid rgba(11,26,51,.18);
+  background: rgba(11,26,51,.04);
   color: var(--muted);
 }
 
@@ -229,58 +342,26 @@ a{ color:inherit; text-decoration:none; }
   max-height: 420px;
   object-fit: contain;
   border-radius: var(--radius);
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.2);
+  border:1px solid var(--line);
+  background: rgba(11,26,51,.03);
   margin: 10px 0 18px;
 }
 
-.footer{
-  border-top:1px solid rgba(36,50,68,.7);
-  padding:22px 0;
-  background: rgba(0,0,0,.15);
-}
-.footer-inner{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
-
-/* Responsive */
-@media (max-width: 900px){
-  .hero-grid{ grid-template-columns: 1fr; }
-  .grid3{ grid-template-columns: 1fr; }
-  .grid2{ grid-template-columns: 1fr; }
-  .nav{ display:none; }
-  .nav-toggle{ display:inline-flex; }
-  .nav.open{
-    display:flex;
-    position:absolute;
-    top:56px; right:4vw;
-    flex-direction:column;
-    background: rgba(11,15,23,.95);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius: 16px;
-    padding:10px;
-    min-width: 220px;
-  }
-}
-
-.avatar{
-  width: 96px;
-  height: 96px;
-  border-radius: 999px;
-  object-fit: cover;
-  display: block;
-  margin: 10px auto 12px; /* กลางการ์ด และเว้นระยะบน-ล่าง */
-  border: 1px solid rgba(255,255,255,.14);
-  box-shadow: 0 10px 20px rgba(0,0,0,.25);
-}
-
-/* Developers - profile style (fixed 4 in one row) */
+/* =========================
+   Developers profiles (4 in a row)
+   ========================= */
 #developers .container{
-  width: min(1400px, 92vw); /* ขยาย container เฉพาะ Developers */
+  width: min(1400px, 92vw);
+}
+
+#developers .section-head{
+  text-align: center;
 }
 
 .profiles{
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)); /* บังคับ 4 คอลัมน์แบบไม่ล้น */
-  gap: 18px;                                        /* ลดช่องว่าง */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
   align-items: start;
   margin-top: 18px;
 }
@@ -291,28 +372,30 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .profile-avatar{
-  width: 130px;   /* ลดจาก 160 */
+  width: 130px;
   height: 130px;
   border-radius: 999px;
   object-fit: cover;
   display: block;
   margin: 0 auto 12px;
-  border: 6px solid rgba(255,255,255,.10);
-  box-shadow: 0 18px 40px rgba(0,0,0,.28);
+  border: 6px solid rgba(11,26,51,.08);
+  box-shadow: 0 18px 40px rgba(11,26,51,.12);
 }
 
 .profile-role{
   margin: 0 0 8px;
-  font-weight: 800;
-  font-size: 18px;  /* ลดนิดให้ไม่กินพื้นที่ */
-  color: #3b82f6;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--gold);
   letter-spacing: .2px;
 }
 
 .profile-name{
   margin: 0 0 6px;
-  font-size: 20px; /* ลดนิด */
-  line-height: 1.2;
+  font-size: 20px;
+  line-height: 1.25;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .profile-sub{
@@ -326,44 +409,29 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .profile-links a{
-  color: rgba(59,130,246,.95);
-  font-weight: 700;
+  color: var(--gold);
+  font-weight: 900;
   text-decoration: none;
 }
 .profile-links a:hover{
+  color: var(--navy);
   text-decoration: underline;
 }
 
-/* Responsive */
-@media (max-width: 1200px){
-  .profiles{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 700px){
-  .profiles{ grid-template-columns: 1fr; }
-}
-
-/* Center the Developers heading */
-#developers .section-head{
-  text-align: center;
-}
-
-#developers .section-head .h2{
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Main Content - force layout */
+/* =========================
+   Main Content icon grid
+   ========================= */
 .icon-grid{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
   align-items: start;
-  justify-items: center; /* ให้ทุกชิ้นอยู่กลางคอลัมน์ */
+  justify-items: center;
   margin-top: 26px;
 }
 
 .icon-card{
-  display: block;        /* สำคัญ: ทำให้ลิงก์เป็น block เต็มๆ */
+  display: block;
   text-align: center;
   text-decoration: none;
   padding: 10px 6px;
@@ -377,49 +445,137 @@ a{ color:inherit; text-decoration:none; }
   margin: 0 auto 14px;
 }
 
-/* responsive */
+.icon-title{
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.icon-sub{
+  margin: 0;
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.icon-card:hover .icon-title{
+  text-decoration: underline;
+}
+
+/* =========================
+   Footer
+   ========================= */
+.footer{
+  border-top:1px solid var(--line);
+  padding:22px 0;
+  background: rgba(255,255,255,.65);
+}
+.footer-inner{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+
+/* =========================
+   Responsive
+   ========================= */
 @media (max-width: 900px){
+  .hero-grid{ grid-template-columns: 1fr; }
+  .grid3{ grid-template-columns: 1fr; }
+  .grid2{ grid-template-columns: 1fr; }
+
+  .nav{ display:none; }
+  .nav-toggle{ display:inline-flex; }
+
+  .nav.open{
+    display:flex;
+    position:absolute;
+    top:56px; right:4vw;
+    flex-direction:column;
+    background: rgba(255,255,255,.96);
+    border:1px solid var(--line);
+    border-radius: 16px;
+    padding:10px;
+    min-width: 220px;
+  }
+
   .icon-grid{ grid-template-columns: 1fr; gap: 22px; }
 }
 
-/* Make background uniform across the whole page */
-body{
-  background: #0b1220; /* หรือสีที่คุณใช้เป็นหลัก */
+@media (max-width: 1200px){
+  .profiles{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px){
+  .profiles{ grid-template-columns: 1fr; }
+}
+/* =========================
+   FORCE FULL WHITE BACKGROUND (Navy-Gold)
+   วางท้ายสุดของ style.css
+   ========================= */
+
+/* 1) ตัวแปรสีให้เป็นขาวจริงทั้งหมด */
+:root{
+  --bg:#ffffff;
+  --panel:#ffffff;
+  --panel2:#ffffff;  /* สำคัญ: ทำให้ section.alt ไม่เป็นเทา */
+  --line:#e6eaf2;
+  --text:#0b1a33;    /* navy */
+  --muted:#52627a;
+  --accent:#c8a64b;  /* gold */
+  --accent2:#0b1a33;
 }
 
+/* 2) ตัด gradient/radial ทั้งหมด ให้เป็นขาวล้วน */
+body{
+  background: #ffffff !important;
+  color: var(--text);
+}
+
+/* 3) ทุก section ให้โปร่งใส/ขาว ไม่สลับโทน */
 .section,
 .section.alt,
 .hero{
-  background: transparent !important;  /* ไม่ให้แต่ละ section ทาสีทับ */
+  background: #ffffff !important;
 }
 
-.section::before,
-.section::after,
-.hero::before,
-.hero::after{
-  content: none !important;            /* ถ้ามี overlay/gradient ซ้อน */
+/* ถ้าคุณไม่อยากให้ section.alt มีเส้นขอบบน/ล่าง */
+.section.alt{
+  border-top: none !important;
+  border-bottom: none !important;
 }
 
-
-.abstract-section{
-  padding: 40px 0;              /* กันชิดขอบบน-ล่าง */
+/* 4) กล่องทุกชนิดให้เป็นขาว (กัน rgba เดิมทับ) */
+.card,
+.hero-card,
+.step,
+.footer{
+  background: #ffffff !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 10px 30px rgba(11,26,51,.10) !important;
 }
 
-.abstract-title{
-  text-align: center;
-  margin: 0 0 22px 0;
+/* 5) เส้นคั่นให้เป็นเส้นอ่อนบนพื้นขาว */
+.divider{
+  background: var(--line) !important;
 }
 
-.abstract-body{
-  width: min(1100px, 92vw);     /* ✅ ทำให้ไม่เต็มจอ */
-  margin: 0 auto;               /* ✅ จัดกึ่งกลาง */
+/* 6) Navigation bar บนพื้นขาว */
+.topbar{
+  background: rgba(255,255,255,.85) !important;
+  border-bottom: 1px solid var(--line) !important;
 }
 
-.abstract-body p{
-  margin: 0 0 18px 0;           /* ✅ เว้นระหว่างย่อหน้า */
-  text-align: justify;          /* ✅ ชิดซ้าย-ขวา */
-  text-justify: inter-word;
-  text-indent: 2em;             /* ✅ ย่อบรรทัดแรก */
-  line-height: 1.8;             /* ✅ อ่านง่าย */
-  hyphens: auto;                /* (ช่วยให้ justify สวยขึ้น บางเบราว์เซอร์) */
+/* 7) สีข้อความ/ลิงก์ให้เข้าธีม กรม-ทอง */
+.title, .h2, .h3{ color: var(--text) !important; }
+.subtitle, .lead, .muted, .small, .profile-sub, .icon-sub{ color: var(--muted) !important; }
+
+.profile-role,
+.icon-title{
+  color: var(--accent) !important; /* gold */
 }
+
+.link:hover,
+.profile-links a,
+.profile-links a:hover{
+  color: var(--accent) !important;
+}
+
+/* (ถ้าคุณใช้ span class="gold" กับคำว่า gold ในหัวข้อ) */
+.gold{ color: var(--accent) !important; }
