@@ -579,3 +579,41 @@ body{
 
 /* (ถ้าคุณใช้ span class="gold" กับคำว่า gold ในหัวข้อ) */
 .gold{ color: var(--accent) !important; }
+/* 1) Developers: ให้ทั้งแถว 4 คนเป็นบล็อกอยู่กลางหน้า */
+#developers .profiles{
+  width: min(1200px, 100%); /* ปรับได้ เช่น 1100/1300 */
+  margin-inline: auto;
+}
+
+/* (ถ้าคุณเคยตั้ง #developers .container เป็น 1400px แล้วมันดูโล่ง/ล้น) */
+#developers .container{
+  width: min(1120px, 92vw); /* กลับไปใช้ความกว้างมาตรฐาน */
+}
+
+/* 2) Main Content: ให้ไอคอน 3 อัน “รวมเป็นกลุ่ม” อยู่กลางหน้า */
+#content .icon-grid{
+  width: min(900px, 100%); /* ปรับได้ เช่น 820/980 */
+  margin-inline: auto;
+  justify-content: center; /* ช่วยให้ track อยู่กลาง */
+}
+/* ===== Fix: Systems Design content align left ===== */
+#system-design .section-head{
+  text-align: left;            /* หัวข้อ Systems Design ชิดซ้าย */
+}
+
+#system-design .card,
+#system-design .prose{
+  text-align: left;            /* เนื้อหาทั้งกล่องชิดซ้าย */
+}
+
+#system-design .prose p,
+#system-design .prose li{
+  text-align: left;            /* ย่อหน้า + list ชิดซ้าย */
+}
+
+/* bullet ให้ดูสวย/เป็นระเบียบ */
+#system-design .bullets{
+  margin: 10px 0 0;
+  padding-left: 18px;          /* ระยะหัวกระสุน */
+  list-style: disc;
+}

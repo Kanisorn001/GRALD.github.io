@@ -161,63 +161,216 @@
 
 
   <!-- Workflow -->
-  <section id="workflow" class="section alt">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="h2">Workflow</h2>
-        <p class="lead">End-to-end pipeline: data → features → models → SHAP → web app (real-time)</p>
-      </div>
+<section id="workflow" class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="h2">Workflow</h2>
+      <p class="lead">End-to-end workflow diagrams of the system</p>
+    </div>
 
-      <!-- ถ้ามีภาพ workflow ให้ใส่ -->
-      <img class="figure" src="assets/workflow.png" alt="System workflow" />
+    <div class="workflow-block">
+      <h3 class="h3">Real-time Updated Data Workflow</h3>
+      <img class="figure" src="assets/Workflow -1.png" alt="Real-time Updated Data Workflow" />
+    </div>
+
+    <div class="workflow-block">
+      <h3 class="h3">Model Training Workflow</h3>
+      <img class="figure" src="assets/workflow.png" alt="Model Training Workflow" />
+    </div>
+
+    <div class="workflow-block">
+      <h3 class="h3">Prediction Backend Workflow</h3>
+      <img class="figure" src="assets/Workflow -2.png" alt="Prediction Backend Workflow" />
+    </div>
+
+    <div class="workflow-block">
+      <h3 class="h3">Trade Plan Overlay Workflow</h3>
+      <img class="figure" src="assets/Workflow -3.png" alt="Trade Plan Overlay Workflow" />
+    </div>
+  </div>
+</section>
+
 
      
 
-  <!-- Systems Design -->
-  <section id="system-design" class="section">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="h2">Systems Design</h2>
-        <p class="lead">Client–Server architecture + automation (data update) + model transparency (SHAP)</p>
-      </div>
-
-      <div class="grid2">
-        <article class="card">
-          <h3 class="h3">Architecture</h3>
-          <ul class="bullets">
-            <li><b>Targets:</b> Gold High / Gold Low / Gold Close (t+1)</li>
-            <li><b>Data Sources:</b> Yahoo Finance (daily) + FRED (macro; monthly → daily via ffill)</li>
-            <li><b>Preprocessing:</b> merge by Date, handle missing, standardize/scale (as needed)</li>
-            <li><b>Models:</b> Linear Regression, CatBoost, XGBoost, LightGBM, LSTM</li>
-            <li><b>Evaluation:</b> Time-based split + walk-forward, metrics: RMSE/MAE/MAPE/R²</li>
-            <li><b>XAI:</b> SHAP global + local explanations</li>
-            <li><b>Backend:</b> FastAPI (predict endpoints, optional /docs)</li>
-            <li><b>Frontend:</b> React (SPA) + Chart.js for visualization</li>
-            <li><b>Automation:</b> GitHub Actions schedule for daily data update</li>
-            <li><b>Deploy:</b> Render (Backend service + Frontend static site)</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3 class="h3">Deliverables</h3>
-          <div class="tags">
-            <span class="tag">Daily Forecast (t+1)</span>
-            <span class="tag">Walk-forward Evaluation</span>
-            <span class="tag">SHAP Dashboard</span>
-            <span class="tag">FastAPI REST API</span>
-            <span class="tag">React + Chart.js UI</span>
-            <span class="tag">GitHub Actions ETL</span>
-            <span class="tag">Render Deployment</span>
-          </div>
-
-          <div class="divider"></div>
-          <p class="muted">
-            ถ้ามีภาพสถาปัตยกรรม/แผนภาพ workflow ให้ใส่ใน <code>assets/</code> แล้วแทรกเป็น <code>&lt;img&gt;</code> ในส่วน Workflow หรือ Systems Design
-          </p>
-        </article>
-      </div>
+<!-- Systems Design -->
+<section id="system-design" class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="h2">Systems Design</h2>
+      <p class="lead">
+        <b>GRALD: Real-time Daily Gold Price Prediction Web Application</b> — An end-to-end pipeline from daily data updates
+        → time-series model training → prediction serving with XAI (SHAP) → web visualization and Trade Plan Overlay.
+      </p>
     </div>
-  </section>
+
+    <article class="card prose">
+      <p>
+        GRALD is designed as an end-to-end system that continuously maintains an up-to-date dataset, trains forecasting models
+        under a leak-free time-series protocol, and serves next-day (t+1) predictions through a REST API.
+        The system also includes an optional <b>Trade Plan Overlay</b> module that helps users quantify trading plans
+        (risk/reward, position sizing) and visualize Entry/SL/TP on top of the price chart.
+        The overall system is organized into four main workflows.
+      </p>
+
+      <h3 class="h3">1) Real-time Updated Data Workflow (Data Pipeline)</h3>
+      <ul class="bullets">
+        <li>
+          <b>Inputs:</b> Daily market variables from <b>Yahoo Finance</b> (e.g., gold OHLCV and related financial variables)
+          and macroeconomic indicators from <b>FRED</b>.
+        </li>
+        <li>
+          <b>Automation & Execution:</b> <b>GitHub Actions</b> runs on a scheduled cron trigger and executes
+          <code>gold_data_fetch.py</code> in a Python environment on a GitHub-hosted runner.
+        </li>
+        <li>
+          <b>Merge + Frequency Alignment:</b> All sources are merged using a shared <b>Date index</b>.
+          Lower-frequency macro series (e.g., monthly) are aligned to the daily timeline using <b>forward-fill</b>
+          so that every feature is available for each daily record.
+        </li>
+        <li>
+          <b>Cleaning & Versioning:</b> The pipeline performs data cleaning (missing values, column consistency, date formats)
+          and writes the updated dataset (e.g., <code>gold_and_macro_data.csv</code>) back to the repository via commit/push.
+        </li>
+        <li>
+          <b>Output:</b> A continuously updated dataset in the GitHub repository, ensuring downstream training and inference
+          always use the latest available data.
+        </li>
+      </ul>
+
+      <h3 class="h3">2) Model Training Workflow (Training & Model Selection)</h3>
+      <ul class="bullets">
+        <li>
+          <b>Data Loading & Validation:</b> Load <code>gold_and_macro_data.csv</code> and run basic quality checks
+          (missing values, data types, date continuity, and scale sanity checks).
+        </li>
+        <li>
+          <b>Preprocessing & Feature Engineering:</b> Build a feature-ready dataframe; generate time-dependent features
+          such as <b>lag features</b>, and construct one-step-ahead targets (t+1) for
+          <b>Gold_Close</b>, <b>Gold_High</b>, and <b>Gold_Low</b>.
+        </li>
+        <li>
+          <b>Time-series Split + Walk-forward Validation:</b> Use a time-ordered split (e.g., 70/15/15 train/val/test)
+          and apply <b>walk-forward rolling validation</b> to prevent data leakage and better mimic real deployment conditions
+          (train on past → validate on future windows).
+        </li>
+        <li>
+          <b>Training, Tuning, and Final Fit:</b> Train multiple models / parameter sets across rolling windows;
+          select the best hyperparameters <b>per target</b>; perform a final fit on Train+Val and evaluate on Test.
+        </li>
+        <li>
+          <b>Evaluation & Selection:</b> Compare models using RMSE, MAE, MAPE, and R²; choose the best model per target
+          (or a primary model for deployment).
+        </li>
+        <li>
+          <b>Packaging Artifacts:</b> Export deployment-ready artifacts:
+          <code>model.joblib</code>, <code>feature_schema.json</code> (required feature names + ordering),
+          and <code>metadata.json</code> (model version, training period, metrics, timestamp).
+        </li>
+        <li>
+          <b>Output:</b> An artifacts directory ready to be loaded by the prediction backend.
+        </li>
+      </ul>
+
+      <h3 class="h3">3) Prediction Backend Workflow (API + Inference + SHAP)</h3>
+      <p>
+        The backend is implemented as a <b>prediction service</b> that loads the latest dataset and the deployed artifacts,
+        generates the correct feature matrix, and serves results through REST endpoints. It also provides SHAP explanations
+        for model transparency.
+      </p>
+
+      <h4 class="h3" style="font-size:16px; margin-top:10px;">Core Modules</h4>
+      <ul class="bullets">
+        <li>
+          <b>Load Latest CSV + Artifacts:</b> Load <code>gold_and_macro_data.csv</code> and the deployed artifacts;
+          validate schema compatibility to avoid feature mismatch at inference time.
+        </li>
+        <li>
+          <b>Feature Engineering:</b> Construct the feature matrix <b>X</b> according to <code>feature_schema.json</code>,
+          matching training-time transformations (including lag features).
+        </li>
+        <li>
+          <b>Input Validation:</b> Validate request payloads and data formats before inference to prevent invalid requests.
+        </li>
+        <li>
+          <b>Inference Engine:</b> Run <code>model.predict(X)</code> to compute next-day forecasts (t+1).
+        </li>
+        <li>
+          <b>SHAP Service:</b> Provide:
+          <b>Global SHAP</b> (overall feature importance; typically precomputed and cached) and
+          <b>Local SHAP</b> (per-request feature contribution for a specific prediction point).
+        </li>
+        <li>
+          <b>In-memory Cache:</b> Cache model objects, feature lists, SHAP explainers, and global SHAP results
+          to reduce latency and avoid repeated loading.
+        </li>
+      </ul>
+
+      <h4 class="h3" style="font-size:16px; margin-top:10px;">REST API Endpoints</h4>
+      <ul class="bullets">
+        <li><b>/prediction/latest</b> — latest forecast (t+1) with timestamp and model_version</li>
+        <li><b>/prices/history</b> — historical time series for charting</li>
+        <li><b>/shap/global</b> — global SHAP summary</li>
+        <li><b>/shap/local</b> — local SHAP explanation for a requested point</li>
+        <li><b>/trade/overlay</b> — trade plan evaluation + overlay lines + risk metrics</li>
+      </ul>
+
+      <p>
+        <b>Output:</b> Structured JSON responses consumed by the frontend to render charts, dashboards, and explanations.
+      </p>
+
+      <h3 class="h3">4) Trade Plan Overlay Workflow (Risk/Reward + Visualization)</h3>
+      <p>
+        This module allows users to input a trading plan and receive quantitative evaluation outputs
+        (rather than trading signals). The output is visualized as an overlay on the price chart.
+      </p>
+      <ul class="bullets">
+        <li>
+          <b>User Inputs:</b> Symbol (e.g., XAU/USD), direction (Buy/Sell), Entry, Stop Loss (SL), Take Profit (TP),
+          account balance, and risk per trade (percentage or fixed amount).
+        </li>
+        <li>
+          <b>Trade Validation:</b> Enforce trading logic constraints:
+          Buy → SL &lt; Entry &lt; TP, Sell → TP &lt; Entry &lt; SL; reject invalid/negative/out-of-range inputs.
+        </li>
+        <li>
+          <b>Risk/Reward Engine:</b> Compute risk distance |Entry − SL|, reward distance |TP − Entry|,
+          risk/reward ratio (R:R), and position sizing based on the user’s risk setting.
+          Generate insight flags (e.g., “TP within forecast range?”, “SL risk above threshold?”).
+        </li>
+        <li>
+          <b>Compare with Forecast + Render:</b> Call <b>/prediction/latest</b>, compare plan vs forecast, and return JSON
+          for rendering Entry/SL/TP lines, risk zones, and summary cards (risk amount, R:R, position size, insights).
+        </li>
+        <li>
+          <b>Output:</b> An interactive dashboard with price chart overlay and numeric risk metrics for decision support.
+        </li>
+      </ul>
+
+      <h3 class="h3">5) Frontend Integration (Presentation Layer)</h3>
+      <ul class="bullets">
+        <li>Fetch historical prices for charting from <b>/prices/history</b></li>
+        <li>Display the latest next-day forecast from <b>/prediction/latest</b></li>
+        <li>Show explainability via <b>/shap/global</b> and <b>/shap/local</b></li>
+        <li>Accept trade plan inputs and visualize overlay outputs from <b>/trade/overlay</b></li>
+      </ul>
+      <p>
+        The backend acts as the <b>single source of truth</b> for forecasting, calculations, and explanations,
+        while the frontend focuses on visualization and user interaction.
+      </p>
+
+      <h3 class="h3">6) Key Design Considerations</h3>
+      <ul class="bullets">
+        <li><b>Leakage prevention:</b> time-series splitting + walk-forward rolling validation</li>
+        <li><b>Reproducibility:</b> versioned artifacts + metadata (training period, metrics, timestamps)</li>
+        <li><b>Performance:</b> in-memory caching for model/explainer/global SHAP to reduce latency</li>
+        <li><b>Maintainability:</b> clear separation of concerns across data, training, serving, and overlay pipelines</li>
+        <li><b>Extensibility:</b> add new models/features by updating artifacts and schema without changing the UI logic</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
 
   <!-- Footer -->
   <footer class="footer">
