@@ -522,11 +522,11 @@ a{ color:inherit; text-decoration:none; }
   --accent2:#0b1a33;
 }
 
-/* 2) ตัด gradient/radial ทั้งหมด ให้เป็นขาวล้วน */
+/* 2) ตัด gradient/radial ทั้งหมด ให้เป็นขาวล้วน
 body{
   background: #ffffff !important;
   color: var(--text);
-}
+} */
 
 /* 3) ทุก section ให้โปร่งใส/ขาว ไม่สลับโทน */
 .section,
@@ -614,3 +614,63 @@ body{
   padding-left: 18px;          /* ระยะหัวกระสุน */
   list-style: disc;
 }
+
+/* =========================
+   WHITE BACKGROUND + NAVY/GOLD SOFT GRADIENT
+   (วางท้ายสุดของ style.css)
+   ========================= */
+
+:root{
+  --navy:#0b1a33;
+  --gold:#c8a64b;
+  --bg:#ffffff;
+  --line:#e6eaf2;
+  --text: var(--navy);
+  --muted:#52627a;
+}
+
+/* พื้นหลักยังขาว แต่ใส่ glow ไล่สีแบบโปร่ง */
+body{
+  background:
+    radial-gradient(900px 520px at 18% 6%, rgba(200,166,75,.18), transparent 55%),
+    radial-gradient(950px 560px at 82% 0%, rgba(11,26,51,.10), transparent 60%),
+    linear-gradient(180deg, rgba(200,166,75,.06), transparent 26%),
+    #ffffff !important;
+  color: var(--text);
+}
+
+/* ให้ทุก section โปร่ง (ไม่ทาทับ background ของ body) */
+.hero,
+.section,
+.section.alt{
+  background: transparent !important;
+}
+
+/* ถ้าอยากให้ section.alt มีแค่เส้นคั่น ไม่ต้องมีพื้นเทา */
+.section.alt{
+  border-top: 1px solid var(--line) !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+
+/* กล่อง/การ์ดเป็นขาวชัด + เงานุ่ม */
+.card,
+.hero-card,
+.step,
+.footer{
+  background: rgba(255,255,255,.92) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 10px 30px rgba(11,26,51,.10) !important;
+}
+
+/* Topbar ใส ๆ */
+.topbar{
+  background: rgba(255,255,255,.78) !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+
+/* สีข้อความให้เข้าธีม */
+.title, .h2, .h3{ color: var(--navy) !important; }
+.subtitle, .lead, .muted, .small{ color: var(--muted) !important; }
+
+/* gold highlight */
+.gold{ color: var(--gold) !important; }
