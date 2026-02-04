@@ -596,10 +596,7 @@ body{
   margin-inline: auto;
   justify-content: center; /* ช่วยให้ track อยู่กลาง */
 }
-/* ===== Fix: Systems Design content align left ===== */
-#system-design .section-head{
-  text-align: left;            /* หัวข้อ Systems Design ชิดซ้าย */
-}
+
 
 #system-design .card,
 #system-design .prose{
