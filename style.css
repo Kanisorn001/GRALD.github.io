@@ -529,11 +529,11 @@ body{
 } */
 
 /* 3) ทุก section ให้โปร่งใส/ขาว ไม่สลับโทน */
-.section,
+/* .section,
 .section.alt,
 .hero{
   background: #ffffff !important;
-}
+} */
 
 /* ถ้าคุณไม่อยากให้ section.alt มีเส้นขอบบน/ล่าง */
 .section.alt{
@@ -615,62 +615,120 @@ body{
   list-style: disc;
 }
 
-/* =========================
-   WHITE BACKGROUND + NAVY/GOLD SOFT GRADIENT
-   (วางท้ายสุดของ style.css)
-   ========================= */
-
 :root{
   --navy:#0b1a33;
   --gold:#c8a64b;
+
   --bg:#ffffff;
-  --line:#e6eaf2;
   --text: var(--navy);
   --muted:#52627a;
+  --line:#e6eaf2;
+
+  --shadow: 0 10px 30px rgba(11,26,51,.10);
+  --radius: 18px;
 }
 
-/* พื้นหลักยังขาว แต่ใส่ glow ไล่สีแบบโปร่ง */
+/* 1) ไล่สีทั้งเว็บ: ใช้กับ body + html */
+html, body{
+  height: 100%;
+}
+
 body{
-  background:
-    radial-gradient(900px 520px at 18% 6%, rgba(200,166,75,.18), transparent 55%),
-    radial-gradient(950px 560px at 82% 0%, rgba(11,26,51,.10), transparent 60%),
-    linear-gradient(180deg, rgba(200,166,75,.06), transparent 26%),
-    #ffffff !important;
+  margin: 0;
   color: var(--text);
+
+  /* ไล่สีแบบเนียนทั้งหน้า (ทอง + กรม + ขาว) */
+  background:
+    radial-gradient(1200px 700px at 10% 0%, rgba(200,166,75,.22), transparent 60%),
+    radial-gradient(1100px 650px at 90% 10%, rgba(11,26,51,.14), transparent 62%),
+    radial-gradient(900px 560px at 50% 55%, rgba(200,166,75,.10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.96) 35%, rgba(255,255,255,1) 100%);
+  background-attachment: fixed; /* ให้ไล่สี “ต่อเนื่องทั้งเว็บ” ตอน scroll */
+
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", sans-serif;
 }
 
-/* ให้ทุก section โปร่ง (ไม่ทาทับ background ของ body) */
+/* 2) สำคัญ: ห้าม section/hero ไปทาทับพื้นหลัง global */
 .hero,
 .section,
-.section.alt{
+.section.alt,
+.footer{
   background: transparent !important;
 }
 
-/* ถ้าอยากให้ section.alt มีแค่เส้นคั่น ไม่ต้องมีพื้นเทา */
+/* 3) เส้นคั่นบางๆ ให้สวยบนพื้นไล่สี */
 .section.alt{
   border-top: 1px solid var(--line) !important;
   border-bottom: 1px solid var(--line) !important;
 }
 
-/* กล่อง/การ์ดเป็นขาวชัด + เงานุ่ม */
+/* 4) กล่อง/การ์ดให้เป็น “กระจกขาว” (ยังเห็นไล่สีด้านหลังนิดๆ) */
 .card,
 .hero-card,
-.step,
-.footer{
-  background: rgba(255,255,255,.92) !important;
-  border-color: var(--line) !important;
-  box-shadow: 0 10px 30px rgba(11,26,51,.10) !important;
+.step{
+  background: rgba(255,255,255,.88) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow) !important;
 }
 
-/* Topbar ใส ๆ */
+/* 5) Topbar ใสๆ */
 .topbar{
-  background: rgba(255,255,255,.78) !important;
+  background: rgba(255,255,255,.75) !important;
   border-bottom: 1px solid var(--line) !important;
+  backdrop-filter: blur(10px);
 }
 
-/* สีข้อความให้เข้าธีม */
-.title, .h2, .h3{ color: var(--navy) !important; }
-.subtitle, .lead, .muted, .small{ color: var(--muted) !important; }
+/* 6) สีตัวอักษรเข้าธีม */
+.title, .h2, .h3{
+  color: var(--navy) !important;
+}
 
-/* gold highlight */
+.subtitle, .lead, .muted, .small{
+  color: var(--muted) !important;
+}
+
+/* 7) gold highlight */
 .gold{ color: var(--gold) !important; }
+
+/* 8) ลิงก์/ปุ่มให้เข้าธีม */
+.link:hover{ color: var(--gold) !important; }
+
+/* 9) (ถ้ามี) Divider */
+.divider{
+  background: var(--line) !important;
+}
+
+/* 10) ปรับของโปรไฟล์ + main content ให้กลุ่มอยู่กลางเหมือนเดิม */
+#developers .profiles{
+  width: min(1200px, 100%);
+  margin-inline: auto;
+}
+#content .icon-grid{
+  width: min(900px, 100%);
+  margin-inline: auto;
+}
+/* Main Content icons -> circle frame */
+#content .icon-img{
+  width: 130px;          /* ปรับได้ */
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;     /* ให้เต็มวงกลม */
+  background: #fff;      /* กันพื้นโปร่ง */
+  border: 6px solid rgba(11,26,51,.08);       /* กรอบโทนกรม */
+  box-shadow: 0 18px 40px rgba(11,26,51,.12); /* เงาเบาๆ */
+  padding: 6px;          /* ทำเป็น ring (ถ้าไม่อยากมีช่องว่าง เอาออกได้) */
+}
+
+/* ถ้าบางรูปถูก crop แปลก ให้ใช้ contain แทน cover */
+#content .icon-img.is-contain{
+  object-fit: contain;
+  background: #fff;
+}
+/* Abstract -> card wrap */
+#abstract .abstract-body.card{
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 26px 28px;
+  border-radius: 18px;
+}
