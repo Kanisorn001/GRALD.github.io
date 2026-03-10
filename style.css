@@ -506,8 +506,8 @@ a{ color:inherit; text-decoration:none; }
 
 .certificate-image{
   width: auto;
-  max-width: min(900px, 90vw);
-  max-height: 90vh;
+  max-width: min(500px, 50vw);
+  max-height: 500vh;
   height: auto;
   display: block;
   margin-inline: auto;
