@@ -13,6 +13,9 @@
   <meta property="og:type" content="website" />
 
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- PDF.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 
 <body>
@@ -380,12 +383,8 @@
     </div>
 
     <div class="poster-container">
-      <div class="pdf-viewer">
-        <object class="poster-pdf" data="assets/GRALD.pdf" type="application/pdf">
-          <p>Your browser does not support PDFs. 
-            <a href="assets/GRALD.pdf" target="_blank" rel="noreferrer">Download the PDF</a>
-          </p>
-        </object>
+      <div class="pdf-preview">
+        <canvas id="posterCanvas" class="pdf-canvas"></canvas>
       </div>
       
       <div class="poster-actions">
@@ -410,12 +409,8 @@
     </div>
 
     <div class="certificate-container">
-      <div class="pdf-viewer">
-        <object class="certificate-pdf" data="assets/MathCert01651.pdf" type="application/pdf">
-          <p>Your browser does not support PDFs. 
-            <a href="assets/MathCert01651.pdf" target="_blank" rel="noreferrer">Download the PDF</a>
-          </p>
-        </object>
+      <div class="pdf-preview">
+        <canvas id="certCanvas" class="pdf-canvas"></canvas>
       </div>
       
       <div class="certificate-actions">
