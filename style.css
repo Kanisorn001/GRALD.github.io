@@ -29,9 +29,11 @@ body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", sans-serif;
   color:var(--text);
   background:
-    radial-gradient(900px 520px at 20% 0%, rgba(200,166,75,.18), transparent 55%),
-    radial-gradient(900px 520px at 80% 0%, rgba(11,26,51,.10), transparent 60%),
-    var(--bg);
+    radial-gradient(1200px 700px at 10% 0%, rgba(200,166,75,.22), transparent 60%),
+    radial-gradient(1100px 650px at 90% 10%, rgba(11,26,51,.14), transparent 62%),
+    radial-gradient(900px 560px at 50% 55%, rgba(200,166,75,.10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.96) 35%, rgba(255,255,255,1) 100%);
+  background-attachment: fixed;
 }
 
 a{ color:inherit; text-decoration:none; }
@@ -54,7 +56,7 @@ a{ color:inherit; text-decoration:none; }
 .topbar{
   position:sticky; top:0; z-index:20;
   backdrop-filter: blur(10px);
-  background: rgba(255,255,255,.72);
+  background: rgba(255,255,255,.85);
   border-bottom:1px solid var(--line);
 }
 
@@ -133,10 +135,9 @@ a{ color:inherit; text-decoration:none; }
   margin:0 auto 18px;
   max-width: 70ch;
   position: relative;
-  padding-bottom: 22px;    /* ระยะเส้นใต้หัวข้อ */
+  padding-bottom: 22px;
 }
 
-/* ✅ เส้นใต้หัวข้อ hero (อยู่ใต้ subtitle) */
 .subtitle::after{
   content:"";
   position:absolute;
@@ -148,7 +149,6 @@ a{ color:inherit; text-decoration:none; }
   background: var(--line);
 }
 
-/* ✅ ทำคำว่า gold เป็นสีทอง */
 .gold{
   color: var(--gold);
 }
@@ -220,15 +220,15 @@ a{ color:inherit; text-decoration:none; }
 /* =========================
    Sections + Headings
    ========================= */
-.section{ padding:56px 0; }
+.section{ padding:56px 0; background: transparent; }
 
 .section.alt{
-  background: var(--panel2);
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
 }
 
 .section-head{ margin-bottom:18px; }
+.section-head.center{ text-align: center; }
 .h2{ font-size: 26px; margin:0 0 6px; color: var(--navy); font-weight: 900; }
 .lead{ margin:0; color:var(--muted); }
 
@@ -245,7 +245,7 @@ a{ color:inherit; text-decoration:none; }
 
 .card{
   border:1px solid var(--line);
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.88);
   border-radius: var(--radius);
   padding:18px;
   box-shadow: var(--shadow);
@@ -311,7 +311,7 @@ a{ color:inherit; text-decoration:none; }
   padding:14px;
   border-radius: var(--radius);
   border:1px solid var(--line);
-  background: rgba(255,255,255,.75);
+  background: rgba(255,255,255,.88);
 }
 
 .step-no{
@@ -324,7 +324,7 @@ a{ color:inherit; text-decoration:none; }
   color: var(--navy);
 }
 
-.bullets{ margin:10px 0 0; padding-left:18px; color:var(--muted); }
+.bullets{ margin:10px 0 0; padding-left:18px; color:var(--navy); }
 .bullets li{ margin:8px 0; }
 
 .tags{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
@@ -428,6 +428,8 @@ a{ color:inherit; text-decoration:none; }
   align-items: start;
   justify-items: center;
   margin-top: 26px;
+  width: min(900px, 100%);
+  margin-inline: auto;
 }
 
 .icon-card{
@@ -438,11 +440,16 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .icon-img{
-  width: 92px;
-  height: 92px;
-  object-fit: contain;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
   display: block;
   margin: 0 auto 14px;
+  background: #fff;
+  border: 6px solid rgba(11,26,51,.08);
+  box-shadow: 0 18px 40px rgba(11,26,51,.12);
+  padding: 6px;
 }
 
 .icon-title{
@@ -464,12 +471,64 @@ a{ color:inherit; text-decoration:none; }
 }
 
 /* =========================
+   Poster Section
+   ========================= */
+.poster-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.poster-image{
+  width: 100%;
+  max-width: 900px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: rgba(11,26,51,.03);
+  box-shadow: var(--shadow);
+}
+
+.poster-actions{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* =========================
+   Certificate Section
+   ========================= */
+.certificate-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.certificate-image{
+  width: 100%;
+  max-width: 900px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: rgba(11,26,51,.03);
+  box-shadow: var(--shadow);
+}
+
+.certificate-actions{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* =========================
    Footer
    ========================= */
 .footer{
   border-top:1px solid var(--line);
   padding:22px 0;
-  background: rgba(255,255,255,.65);
+  background: transparent;
 }
 .footer-inner{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
 
@@ -502,233 +561,7 @@ a{ color:inherit; text-decoration:none; }
 @media (max-width: 1200px){
   .profiles{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
 @media (max-width: 700px){
   .profiles{ grid-template-columns: 1fr; }
-}
-/* =========================
-   FORCE FULL WHITE BACKGROUND (Navy-Gold)
-   วางท้ายสุดของ style.css
-   ========================= */
-
-/* 1) ตัวแปรสีให้เป็นขาวจริงทั้งหมด */
-:root{
-  --bg:#ffffff;
-  --panel:#ffffff;
-  --panel2:#ffffff;  /* สำคัญ: ทำให้ section.alt ไม่เป็นเทา */
-  --line:#e6eaf2;
-  --text:#0b1a33;    /* navy */
-  --muted:#52627a;
-  --accent:#c8a64b;  /* gold */
-  --accent2:#0b1a33;
-}
-
-/* 2) ตัด gradient/radial ทั้งหมด ให้เป็นขาวล้วน
-body{
-  background: #ffffff !important;
-  color: var(--text);
-} */
-
-/* 3) ทุก section ให้โปร่งใส/ขาว ไม่สลับโทน */
-/* .section,
-.section.alt,
-.hero{
-  background: #ffffff !important;
-} */
-
-/* ถ้าคุณไม่อยากให้ section.alt มีเส้นขอบบน/ล่าง */
-.section.alt{
-  border-top: none !important;
-  border-bottom: none !important;
-}
-
-/* 4) กล่องทุกชนิดให้เป็นขาว (กัน rgba เดิมทับ) */
-.card,
-.hero-card,
-.step,
-.footer{
-  background: #ffffff !important;
-  border-color: var(--line) !important;
-  box-shadow: 0 10px 30px rgba(11,26,51,.10) !important;
-}
-
-/* 5) เส้นคั่นให้เป็นเส้นอ่อนบนพื้นขาว */
-.divider{
-  background: var(--line) !important;
-}
-
-/* 6) Navigation bar บนพื้นขาว */
-.topbar{
-  background: rgba(255,255,255,.85) !important;
-  border-bottom: 1px solid var(--line) !important;
-}
-
-/* 7) สีข้อความ/ลิงก์ให้เข้าธีม กรม-ทอง */
-.title, .h2, .h3{ color: var(--text) !important; }
-.subtitle, .lead, .muted, .small, .profile-sub, .icon-sub{ color: var(--muted) !important; }
-
-.profile-role,
-.icon-title{
-  color: var(--accent) !important; /* gold */
-}
-
-.link:hover,
-.profile-links a,
-.profile-links a:hover{
-  color: var(--accent) !important;
-}
-
-/* (ถ้าคุณใช้ span class="gold" กับคำว่า gold ในหัวข้อ) */
-.gold{ color: var(--accent) !important; }
-/* 1) Developers: ให้ทั้งแถว 4 คนเป็นบล็อกอยู่กลางหน้า */
-#developers .profiles{
-  width: min(1200px, 100%); /* ปรับได้ เช่น 1100/1300 */
-  margin-inline: auto;
-}
-
-/* (ถ้าคุณเคยตั้ง #developers .container เป็น 1400px แล้วมันดูโล่ง/ล้น) */
-#developers .container{
-  width: min(1120px, 92vw); /* กลับไปใช้ความกว้างมาตรฐาน */
-}
-
-/* 2) Main Content: ให้ไอคอน 3 อัน “รวมเป็นกลุ่ม” อยู่กลางหน้า */
-#content .icon-grid{
-  width: min(900px, 100%); /* ปรับได้ เช่น 820/980 */
-  margin-inline: auto;
-  justify-content: center; /* ช่วยให้ track อยู่กลาง */
-}
-
-
-#system-design .card,
-#system-design .prose{
-  text-align: left;            /* เนื้อหาทั้งกล่องชิดซ้าย */
-}
-
-#system-design .prose p,
-#system-design .prose li{
-  text-align: left;            /* ย่อหน้า + list ชิดซ้าย */
-}
-
-/* bullet ให้ดูสวย/เป็นระเบียบ */
-#system-design .bullets{
-  margin: 10px 0 0;
-  padding-left: 18px;          /* ระยะหัวกระสุน */
-  list-style: disc;
-}
-
-:root{
-  --navy:#0b1a33;
-  --gold:#c8a64b;
-
-  --bg:#ffffff;
-  --text: var(--navy);
-  --muted:#52627a;
-  --line:#e6eaf2;
-
-  --shadow: 0 10px 30px rgba(11,26,51,.10);
-  --radius: 18px;
-}
-
-/* 1) ไล่สีทั้งเว็บ: ใช้กับ body + html */
-html, body{
-  height: 100%;
-}
-
-body{
-  margin: 0;
-  color: var(--text);
-
-  /* ไล่สีแบบเนียนทั้งหน้า (ทอง + กรม + ขาว) */
-  background:
-    radial-gradient(1200px 700px at 10% 0%, rgba(200,166,75,.22), transparent 60%),
-    radial-gradient(1100px 650px at 90% 10%, rgba(11,26,51,.14), transparent 62%),
-    radial-gradient(900px 560px at 50% 55%, rgba(200,166,75,.10), transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.96) 35%, rgba(255,255,255,1) 100%);
-  background-attachment: fixed; /* ให้ไล่สี “ต่อเนื่องทั้งเว็บ” ตอน scroll */
-
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", sans-serif;
-}
-
-/* 2) สำคัญ: ห้าม section/hero ไปทาทับพื้นหลัง global */
-.hero,
-.section,
-.section.alt,
-.footer{
-  background: transparent !important;
-}
-
-/* 3) เส้นคั่นบางๆ ให้สวยบนพื้นไล่สี */
-.section.alt{
-  border-top: 1px solid var(--line) !important;
-  border-bottom: 1px solid var(--line) !important;
-}
-
-/* 4) กล่อง/การ์ดให้เป็น “กระจกขาว” (ยังเห็นไล่สีด้านหลังนิดๆ) */
-.card,
-.hero-card,
-.step{
-  background: rgba(255,255,255,.88) !important;
-  border: 1px solid var(--line) !important;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow) !important;
-}
-
-/* 5) Topbar ใสๆ */
-.topbar{
-  background: rgba(255,255,255,.75) !important;
-  border-bottom: 1px solid var(--line) !important;
-  backdrop-filter: blur(10px);
-}
-
-/* 6) สีตัวอักษรเข้าธีม */
-.title, .h2, .h3{
-  color: var(--navy) !important;
-}
-
-.subtitle, .lead, .muted, .small{
-  color: var(--muted) !important;
-}
-
-/* 7) gold highlight */
-.gold{ color: var(--gold) !important; }
-
-/* 8) ลิงก์/ปุ่มให้เข้าธีม */
-.link:hover{ color: var(--gold) !important; }
-
-/* 9) (ถ้ามี) Divider */
-.divider{
-  background: var(--line) !important;
-}
-
-/* 10) ปรับของโปรไฟล์ + main content ให้กลุ่มอยู่กลางเหมือนเดิม */
-#developers .profiles{
-  width: min(1200px, 100%);
-  margin-inline: auto;
-}
-#content .icon-grid{
-  width: min(900px, 100%);
-  margin-inline: auto;
-}
-/* Main Content icons -> circle frame */
-#content .icon-img{
-  width: 130px;          /* ปรับได้ */
-  height: 130px;
-  border-radius: 50%;
-  object-fit: cover;     /* ให้เต็มวงกลม */
-  background: #fff;      /* กันพื้นโปร่ง */
-  border: 6px solid rgba(11,26,51,.08);       /* กรอบโทนกรม */
-  box-shadow: 0 18px 40px rgba(11,26,51,.12); /* เงาเบาๆ */
-  padding: 6px;          /* ทำเป็น ring (ถ้าไม่อยากมีช่องว่าง เอาออกได้) */
-}
-
-/* ถ้าบางรูปถูก crop แปลก ให้ใช้ contain แทน cover */
-#content .icon-img.is-contain{
-  object-fit: contain;
-  background: #fff;
-}
-/* Abstract -> card wrap */
-#abstract .abstract-body.card{
-  width: min(1100px, 92vw);
-  margin: 0 auto;
-  padding: 26px 28px;
-  border-radius: 18px;
 }
