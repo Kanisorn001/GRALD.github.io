@@ -249,6 +249,18 @@ a{ color:inherit; text-decoration:none; }
   border-radius: var(--radius);
   padding:18px;
   box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.prose{
+  text-align: left;
+}
+
+.prose p,
+.prose li,
+.prose h3,
+.prose h4{
+  text-align: left;
 }
 
 .h3{ margin:0 0 8px; font-size:18px; color: var(--navy); font-weight: 800; }
@@ -506,8 +518,8 @@ a{ color:inherit; text-decoration:none; }
 
 .certificate-image{
   width: auto;
-  max-width: min(500px, 50vw);
-  max-height: 500vh;
+  max-width: min(900px, 90vw);
+  max-height: 90vh;
   height: auto;
   display: block;
   margin-inline: auto;
